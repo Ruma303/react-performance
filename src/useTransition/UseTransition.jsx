@@ -16,6 +16,10 @@ function UseTransition() {
             setInput(inputValue);
         });
     };
+   /*  const handleChange = (e) => {
+        const inputValue = e.target.value;
+        setInput(inputValue); //! Senza startTransition()
+    }; */
 
     useEffect(() => {
         if (!input) {
