@@ -11,8 +11,8 @@ function App() {
         {/* <UseMemo /> */}
         {/* <ReactMemo /> */}
         {/* <UseCallback /> */}
-        <UseTransition />
-        {/* <UseDeferredValue /> */}
+        {/* <UseTransition /> */}
+        <UseDeferredValue />
     </>
   );
 }

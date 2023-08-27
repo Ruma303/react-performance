@@ -1,19 +1,39 @@
-import React, { useState, useDeferredValue } from 'react';
+import React, { useState, useEffect, useDeferredValue } from 'react';
 
 function UseDeferredValue() {
-    const [text, setText] = useState('Hello');
+    const [data, setData] = useState([]);
+    const [search, setSearch] = useState('');
+    const deferredData = useDeferredValue(data);
 
-    // Questo valore sarà immediatamente aggiornato
-    const textValue = useDeferredValue(text, { timeoutMs: 3000 });
+    useEffect(() => {
+        const url = search
+            ? `https://jsonplaceholder.typicode.com/photos/${search}`
+            : 'https://jsonplaceholder.typicode.com/photos';
+        fetch(url)
+            .then((response) => response.json())
+            .then((dataFetched) => {
+                const data = Array.isArray(dataFetched) ? dataFetched : [dataFetched];
+                setData(data);
+
+            });
+    }, [search]);
 
     return (
         <div>
             <h1>useDeferredValue</h1>
             <input
-                value={text}
-                onChange={(e) => setText(e.target.value)}
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Inserisci un numero..."
             />
-            <p>{textValue}</p>
+            {deferredData.map((item) => (
+                <div key={item.id}>
+                    <h3>{item.title}</h3>
+                    <p>ID: {item.id}</p>
+                    <img src={item.thumbnailUrl} alt={item.title} />
+                </div>
+            ))}
         </div>
     );
 }
