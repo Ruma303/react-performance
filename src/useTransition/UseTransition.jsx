@@ -11,14 +11,15 @@ function UseTransition() {
 
     const handleChange = (e) => {
         const inputValue = e.target.value;
+        setInput(inputValue); //! Senza startTransition()
+    };
+
+    /* const handleChange = (e) => {
+        const inputValue = e.target.value;
         //* Questo update non è così importante.
         startTransition(() => {
             setInput(inputValue);
         });
-    };
-   /*  const handleChange = (e) => {
-        const inputValue = e.target.value;
-        setInput(inputValue); //! Senza startTransition()
     }; */
 
     useEffect(() => {
@@ -32,8 +33,11 @@ function UseTransition() {
         <div>
             <h1>useTransition</h1>
             <input type="text" onChange={handleChange} />
+
             {isPending ? ( //? Se i dati non sono stati calcolati, isPending === true
                 <h3>Loading...</h3>
+
+
             ) : ( //? Quando i dati saranno stati calcolati, verranno mostrati
                 <div>
                     {filteredData.map((item, index) => (

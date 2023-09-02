@@ -18,7 +18,10 @@ function App() {
             {/* <UseDeferredValue /> */}
 
             {/* Lazy loading */}
-            {/* </><Suspense fallback={<h1>Caricamento...</h1>}> */}
+            {/* <Suspense fallback={<h1>Caricamento...</h1>}>
+                <LazyComponent />
+            </Suspense> */}
+
             {/* <Suspense fallback={<div className='fallback'>
                 <img src={Spinner} alt='loading...' />
                 <a href="https://icons8.com/">Icons8 Copyright</a>
